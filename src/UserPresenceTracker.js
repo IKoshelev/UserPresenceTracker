@@ -1,45 +1,63 @@
 /// <reference path="typings/jquery.d.ts" />
 var UserPresenceTracker;
-(function (UserPresenceTracker_1) {
+(function (UserPresenceTracker) {
     function noop() { }
     ;
-    var UserPresenceTracker = (function () {
-        function UserPresenceTracker(window, onInactive, onActivityResume, timeoutMs, jQuery) {
+    var Tracker = (function () {
+        function Tracker(window, onInactive, onActivityResume, timeoutMs, jQuery) {
             var _this = this;
-            this.timeoutMs = 10 * 60 * 1000;
-            this.lastActivityDate = new Date();
-            this.isActive = true;
+            this._timeoutMs = 10 * 60 * 1000;
+            this._lastActivityDate = new Date();
+            this._isUserPresent = true;
             this.destroy = function () {
-                _this.removeEventListener(UserPresenceTracker.eventNames, _this.onAnyActivity);
+                if (_this.lastTimeoutId) {
+                    _this.window.clearTimeout(_this.lastTimeoutId);
+                }
+                _this.removeEventListener(Tracker.eventNames, _this.onAnyActivity);
             };
             this.onInactive = function () {
-                _this.isActive = false;
+                _this._isUserPresent = false;
                 _this.lastTimeoutId = null;
                 (_this.onInactiveCallback || noop)();
             };
             this.onActivityResume = function () {
-                _this.isActive = true;
+                _this._isUserPresent = true;
                 (_this.onActivityResumeCallback || noop)();
             };
             this.onAnyActivity = function () {
-                _this.lastActivityDate = new Date();
+                _this._lastActivityDate = new Date();
                 if (_this.lastTimeoutId) {
                     _this.window.clearTimeout(_this.lastTimeoutId);
                 }
-                _this.lastTimeoutId = _this.window.setTimeout(_this.onInactive, _this.timeoutMs);
-                if (!_this.isActive) {
+                _this.lastTimeoutId = _this.window.setTimeout(_this.onInactive, _this._timeoutMs);
+                if (!_this._isUserPresent) {
                     _this.onActivityResume();
                 }
             };
             this.onInactiveCallback = onInactive;
             this.onActivityResumeCallback = onActivityResume;
-            this.timeoutMs = timeoutMs;
+            this._timeoutMs = timeoutMs || this._timeoutMs;
             this.window = window;
             this.$ = jQuery;
             this.onAnyActivity();
-            this.addEventListener(UserPresenceTracker.eventNames, this.onAnyActivity);
+            this.addEventListener(Tracker.eventNames, this.onAnyActivity);
         }
-        UserPresenceTracker.prototype.addEventListener = function (events, clbck) {
+        Object.defineProperty(Tracker.prototype, "timeoutMs", {
+            get: function () { return this._timeoutMs; },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Tracker.prototype, "lastActivityDate", {
+            get: function () { return this._lastActivityDate; },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Tracker.prototype, "isUserPresent", {
+            get: function () { return this._isUserPresent; },
+            enumerable: true,
+            configurable: true
+        });
+        Tracker.prototype.addEventListener = function (events, clbck) {
             if (this.$) {
                 this.$(this.window).on(events, clbck);
                 return;
@@ -47,17 +65,19 @@ var UserPresenceTracker;
             var keys = events.split(" ");
             keys.forEach(function (key) { return window.addEventListener(key, clbck); });
         };
-        UserPresenceTracker.prototype.removeEventListener = function (events, clbck) {
+        Tracker.prototype.removeEventListener = function (events, clbck) {
             if (this.$) {
                 this.$(this.window).off(events, clbck);
                 return;
             }
             var keys = events.split(" ");
-            keys.forEach(function (key) { return window.removeEventListener(key, clbck); });
+            keys.forEach(function (key) {
+                window.removeEventListener(key, clbck);
+            });
         };
-        UserPresenceTracker.eventNames = "click mousemove keydown mousedown touchstart";
-        return UserPresenceTracker;
+        Tracker.eventNames = "click mousemove keydown mousedown touchstart";
+        return Tracker;
     })();
-    UserPresenceTracker_1.UserPresenceTracker = UserPresenceTracker;
+    UserPresenceTracker.Tracker = Tracker;
 })(UserPresenceTracker || (UserPresenceTracker = {}));
 //# sourceMappingURL=UserPresenceTracker.js.map

@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ab3566ba-6eb2-4306-a2b5-7ac959c91877}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>karma.conf.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -21,22 +21,26 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="karma-no-jQuery.conf.js" />
     <Compile Include="karma.conf.js" />
     <Compile Include="src\UserPresenceTracker.js" />
     <Compile Include="unit\dep\jquery-1.11.3.js" />
+    <Compile Include="unit\dep\q.js" />
+    <Compile Include="unit\UserPresenceTracker.unit.js" />
     <Content Include="index.html" />
     <Content Include="package.json" />
     <Compile Include="GruntFile.js" />
     <Content Include="src\UserPresenceTracker.js.map" />
     <Content Include="unit\reports\Chrome 43.0.2357 %28Windows 7 0.0.0%29\index.html" />
     <Content Include="unit\reports\Firefox 38.0.0 %28Windows 7 0.0.0%29\index.html" />
+    <Content Include="unit\UserPresenceTracker.unit.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src" />
     <Folder Include="src\typings\" />
     <Folder Include="unit\" />
     <Folder Include="unit\dep\" />
-    <Folder Include="unit\tpyings\" />
+    <Folder Include="unit\typings\" />
     <Folder Include="unit\reports\" />
     <Folder Include="unit\reports\Chrome 43.0.2357 %28Windows 7 0.0.0%29\" />
     <Folder Include="unit\reports\Firefox 38.0.0 %28Windows 7 0.0.0%29\" />
@@ -44,7 +48,10 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\typings\jquery.d.ts" />
     <TypeScriptCompile Include="src\UserPresenceTracker.ts" />
-    <TypeScriptCompile Include="unit\tpyings\jasmine.d.ts" />
+    <TypeScriptCompile Include="unit\typings\jasmine.d.ts" />
+    <TypeScriptCompile Include="unit\typings\jquery.d.ts" />
+    <TypeScriptCompile Include="unit\typings\Q.d.ts" />
+    <TypeScriptCompile Include="unit\dep\triggerEvent.ts" />
     <TypeScriptCompile Include="unit\UserPresenceTracker.unit.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

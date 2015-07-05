@@ -93,17 +93,20 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 </style>
 </head>
 
-<body id="HTMLReporter" class="html-reporter">
+<body id="HTMLReporter" class="html-reporter showDetails">
 <h1>Tested in Firefox 38.0.0 (Windows 7 0.0.0) on Sun Jul 05 2015</h1>
 
 <div class="alert">
 
 
+<!-- <span class="failingAlert bar">Failed 1 specs</span> -->
+<span class="failingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
+  <a href="#" onclick="unfold();">Unfold</a></span>6 specs, 1 failed, 0 pending</span>
+<span class="resultsMenu bar">
+<a class="summaryMenuItem" onclick="showSummary();" href="#">Spec List<a>|<a 
+   class="detailsMenuItem" onclick="showFailures();" href="#">Failures</a>
+</span>
 
-  
-  <span class="passingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
-  <a href="#" onclick="unfold();">Unfold</a></span>2 specs, 0 failed, 0 pending</span>
-  
 
 
 </div>
@@ -114,7 +117,7 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
   
   
   
-    <div class="suite passed">
+    <div class="suite failed">
       <span class="description">UserPresneceTracker</span>
     
       <div class="specSummary passed">
@@ -122,7 +125,23 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
       </div>
     
       <div class="specSummary passed">
-      <span class="description">notifys of inactivity</span>
+      <span class="description">notifies of inactivity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">notifies of activity resume</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tracks all events</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">does not notify inactivity while user is active</span>
+      </div>
+    
+      <div class="specSummary failed">
+      <span class="description">can be destroyed</span>
       </div>
     
     </div>
@@ -131,6 +150,43 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 </div>
 
 <div id="details">
+  
+  
+  <div class="specDetail failed">
+    <span class="description">UserPresneceTracker can be destroyed</span>
+    <div class="stackTrace">
+      <div class="resultMessage">Expected false to be true.
+@http://localhost:9876/base/unit/UserPresenceTracker.unit.js?5fcc12379fefb3718d7ac24ec8914052e90b3c9c:101:13
+_fulfilled@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:834:54
+Promise.prototype.then/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:863:30
+Promise/promise.promiseDispatch@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:796:13
+become/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:604:17
+runSingle@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:137:13
+flush@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:125:13,Expected 1 to be 0.
+@http://localhost:9876/base/unit/UserPresenceTracker.unit.js?5fcc12379fefb3718d7ac24ec8914052e90b3c9c:102:13
+_fulfilled@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:834:54
+Promise.prototype.then/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:863:30
+Promise/promise.promiseDispatch@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:796:13
+become/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:604:17
+runSingle@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:137:13
+flush@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:125:13,Expected false to be true.
+@http://localhost:9876/base/unit/UserPresenceTracker.unit.js?5fcc12379fefb3718d7ac24ec8914052e90b3c9c:106:13
+_fulfilled@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:834:54
+Promise.prototype.then/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:863:30
+Promise/promise.promiseDispatch@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:796:13
+become/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:604:17
+runSingle@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:137:13
+flush@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:125:13,Expected 1 to be 0.
+@http://localhost:9876/base/unit/UserPresenceTracker.unit.js?5fcc12379fefb3718d7ac24ec8914052e90b3c9c:107:13
+_fulfilled@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:834:54
+Promise.prototype.then/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:863:30
+Promise/promise.promiseDispatch@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:796:13
+become/&lt;/&lt;@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:604:17
+runSingle@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:137:13
+flush@http://localhost:9876/base/unit/dep/q.js?8d3d5a82e794c2ade801d4e5b3e23af75ac92298:125:13</div>
+    </div>
+  </div>
+  
   
 </div>
 
@@ -143,7 +199,7 @@ document.body.onkeypress = function (e) {
   switch (e.keyCode) {
     case 102: toggleFold(); break;
     case 49: showSummary(); break;
-    
+    case 50: showFailures(); break;
   }
 };
 

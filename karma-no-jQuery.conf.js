@@ -9,10 +9,12 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
+
     // list of files / patterns to load in the browser
     files: [			
             "src/UserPresenceTracker.js",
-            "unit/dep/*.js",
+            "unit/dep/q.js",
+            "unit/dep/triggerEvent.js",
 			"unit/*.js"
     ],
 
