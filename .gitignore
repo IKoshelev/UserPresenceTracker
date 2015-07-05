@@ -6,6 +6,13 @@
 *.user
 *.sln.docstates
 
+# node
+/node_modules/*
+
+# vs
+/debug/*
+/bin/*
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
