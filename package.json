@@ -1,11 +1,7 @@
 {
-  "name": "user-presence",
+  "name": "user-presence-tracker",
   "version": "0.0.1",
   "description": "JS library to track when user is away from browser",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Ivan Koshelev",
   "license": "Apache-2.0",
   "dependencies": {},
