@@ -12,12 +12,12 @@ and
 var tracker = new UserPresenceTracker.Tracker(window, onInactive , onActivityResume, timeoutMs, window.$);
 </code></pre>
 
-All dependencies are passed throught the constructor.
-window - global window object, will be used for timeout setting and addEventListener's if jQuery isn't present.
-onInactive - a () => void funtion called when specifiend timeoutMs has passed without user activity
-onActivityResume - a () => void function called when user is active again
-timeoutMs - timoeut in milliseconds, if this amount of time passes without user activity - user is considered inactive
-window.$ - jQuery library. If you are using evergreen browsers - code should work without it, for legacy - make sure you pass it.
+All dependencies are passed throught the constructor.<br/>
+window - global window object, will be used for timeout setting and addEventListener's if jQuery isn't present.<br/>
+onInactive - a () => void funtion called when specifiend timeoutMs has passed without user activity<br/>
+onActivityResume - a () => void function called when user is active again<br/>
+timeoutMs - timoeut in milliseconds, if this amount of time passes without user activity - user is considered inactive<br/>
+window.$ - jQuery library. If you are using evergreen browsers - code should work without it, for legacy - make sure you pass it.<br/>
 
 <h1>Tesing and development</h1>
 
