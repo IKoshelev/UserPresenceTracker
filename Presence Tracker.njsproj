@@ -27,7 +27,6 @@
     <Compile Include="unit\dep\jquery-1.11.3.js" />
     <Compile Include="unit\dep\q.js" />
     <Compile Include="unit\UserPresenceTracker.unit.js" />
-    <Content Include="index.html" />
     <Content Include="package.json" />
     <Compile Include="GruntFile.js" />
     <Content Include="src\UserPresenceTracker.js.map" />
