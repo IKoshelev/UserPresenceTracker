@@ -10,16 +10,23 @@ module UserPresenceTracker {
 
         private _timeoutMs: number = 10 * 60 * 1000;
         public get timeoutMs(){return this._timeoutMs;}
-        public _lastActivityDate = new Date();
+        private _lastActivityDate = new Date();
         public get lastActivityDate() { return this._lastActivityDate; }
-        public _isUserPresent = true;
+        private _isUserPresent = true;
         public get isUserPresent() { return this._isUserPresent; }
+        private _isDestroyed = false;
+        public get isDestroyed() { return this._isDestroyed; }
 
-        public destroy = () => {
+        public triggerActivity() {
+            this.onAnyActivity();
+        }
+         
+        public destroy(){
             if (this.lastTimeoutId) {
                 this.window.clearTimeout(this.lastTimeoutId);
             }
             this.removeEventListener(Tracker.eventNames, this.onAnyActivity);
+            this._isDestroyed = true;
         }
 
         private window: Window;

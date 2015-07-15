@@ -9,12 +9,7 @@ var UserPresenceTracker;
             this._timeoutMs = 10 * 60 * 1000;
             this._lastActivityDate = new Date();
             this._isUserPresent = true;
-            this.destroy = function () {
-                if (_this.lastTimeoutId) {
-                    _this.window.clearTimeout(_this.lastTimeoutId);
-                }
-                _this.removeEventListener(Tracker.eventNames, _this.onAnyActivity);
-            };
+            this._isDestroyed = false;
             this.onInactive = function () {
                 _this._isUserPresent = false;
                 _this.lastTimeoutId = null;
@@ -57,6 +52,21 @@ var UserPresenceTracker;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(Tracker.prototype, "isDestroyed", {
+            get: function () { return this._isDestroyed; },
+            enumerable: true,
+            configurable: true
+        });
+        Tracker.prototype.triggerActivity = function () {
+            this.onAnyActivity();
+        };
+        Tracker.prototype.destroy = function () {
+            if (this.lastTimeoutId) {
+                this.window.clearTimeout(this.lastTimeoutId);
+            }
+            this.removeEventListener(Tracker.eventNames, this.onAnyActivity);
+            this._isDestroyed = true;
+        };
         Tracker.prototype.addEventListener = function (events, clbck) {
             if (this.$) {
                 this.$(this.window).on(events, clbck);
